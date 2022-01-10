@@ -1,0 +1,115 @@
+<DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="css/style.css">
+      <title>Dossier projet</title>
+    </head>
+    <body>
+      <div class="select">
+        <button type="button" class='selectGame' onclick="selectChange('gameSelect')" id='selectGame'>Le jeu</button>
+        <button type="button" class='selectIA' onclick="selectChange('iaSelect')" id='selectIA'>IA</button>
+        <button type="button" class='selectHTML' onclick="selectChange('htmlSelect')" id='selectHTML'>HTML et Javascript</button>
+        <div class="selection gameSelect" id='selection'>^</div>
+      </div>
+      <div class="menu" id='menu'>
+        <img src="img/gameScreen.png" class='menuImg' alt="an image">
+        <a href="https://stxrm-cc.github.io/game-play/misc/game/index.html" class='linkIndex' target='_blank'>Voir le jeu</a>
+
+      </div>
+
+      <div class="textGame hidden" id='textGame'>
+        <p class="game" id='game'>
+          - Ce projet nous a pris toutes les semaines disponibles;
+        </p>
+        <p class="game2" id='game'>
+          - Qui a fait quoi ?
+        </p>
+        <p class="game3" id='game'>
+          - l'IA et la base du jeu : Nils <br>
+          - l'interface et aide au passage en Javascript : Dimitris
+        </p>
+        <p class="game4" id='game'>
+          - Comment fonctionne le programme ?
+        </p>
+        <p class="game5" id='game'>
+          - Le programme est separé en plein de petites fonctions avec des buts bien precis <br>
+          - Les fonctions principales sont la base du jeu et elles sont :
+        </p>
+        <img class='img1' src='img/Remplace.png'>
+        <img class='img2' src='img/possible.png'>
+        <img class='img3' src='img/NombrePosition.png'>
+        <p class="game6" id='game' href="test">
+          - Ensuite nous avons ajouté une IA
+        </p>
+        <button type="button" class='switchIA' onclick="selectChange('iaSelect')">prochaine page</button>
+
+      </div>
+
+      <div class="textIA hidden" id='textIA'>
+        <p class="game" id='ia'>
+          - Il y a deux types d'IA : l'aleatoire et l'intelligente
+        </p>
+        <p class="game2" id='ia'>
+          - L'aleatoire fait dans l'ordre :
+        </p>
+        <p class="game3" id='ia'>
+          - Regarder toutes les possibilités de jouer et les memoriser<br>
+          - Prendre aleatoirement une position à jouer dans celles memorisees
+        </p>
+        <p class="game4" id='ia'>
+          - L'IA qui réfléchit utilise l'algorithme Mini-Max (ligne 383)
+        </p>
+        <p class="game5" id='ia'>
+          <br>
+          - Le Mini-Max fabrique l'arbre des possibles avec une profondeur de 4 (8 sur Javascript) <br>
+          sans oublier la fonction en dessous (IA_minimax(grid)) qui fait une profondeur de plus
+        </p>
+        <p class="game5v5" id='ia'>
+          - nous avons trouvé que le temps de réflexion de l'IA était trop long donc <br>
+          nous avons implémenté l'élagage Alpha-Beta qui réduit le nombre de calculs <br>
+          total tout en gardant la meilleure efficacité (le temps de calcul peut etre divisé par 10 ou plus des fois)
+        </p>
+        <img class='img4' src='img/alphaBeta.png'>
+        <button type="button" class='switchIA' onclick="selectChange('htmlSelect')">prochaine page</button>
+
+      </div>
+      <div class="textHtml hidden" id='textHtml'>
+        <button type="button" class='showRappel' onclick="showRappel()">informations</button>
+        <p class='html1'>
+          Nous avons ensuite choisi de “passer” (mais plutôt entièrement refaire) notre projet avec ces deux<br>
+          langues (trois si nous prenons en compte le CSS, qui accompagne l’HTML afin de lui donner du “style”,<br>
+          c’est-à-dire qu’il est utilisé pour “styliser” et mettre en page la page Web, par exemple pour modifier<br>
+          la police, la couleur, la taille et l'espacement du contenu, le diviser en plusieurs colonnes ou ajouter<br>
+          des animations et d'autres éléments décoratifs), car il s’agit d’un moyen nécessitant très peu de connaissances<br>
+          sur ces deux langages (principalement car ils sont très faciles à apprendre). <br><br>
+
+          Par exemple, le language HTML ne s’agit pas d’un langage qui nécessite des compétences sur la maitrise de l’informatique<br>
+          en profondeur pour une partie majoritaire qui nous permet de représenter l’idée initiale derrière le concept de notre jeu. <br><br>
+          De plus, le JavaScript est un langage qui ressemble beaucoup à Python (le langage que nous avons utilise pendant<br>
+          les cours de NSI et que nous avons utilisé afin de créer le jeu dans un premier temps), ce qui nous a permis<br>
+          de rapidement s’habituer à l’emploi de ce dernier.
+        </p>
+        <img class='img5' src='img/JavaScript.png'>
+        <a href="https://stxrm-cc.github.io/game-play/misc/game/index.html" class='linkIndex' target='_blank'>Voir le jeu</a>
+      </div>
+      <div type='container' class="rappel hidden" id='rappel'>
+        <button type="button" class='rappelButton' id='rappelButton' onclick="closeRappel()">X</button>
+          <p class='rappelText'>
+            HTML signifie « HyperText Markup Language » qu'on peut traduire par « langage de balises pour l'hypertexte ».<br>
+            Il est utilisé afin de créer et de représenter le contenu d'une page web et sa structure. D'autres technologies<br>
+            sont utilisées avec HTML pour décrire la présentation d'une page (CSS) et/ou ses<br>
+            fonctionnalités interactives (JavaScript).<br><br>
+
+            Le JavaScript (abrégé JS) est un langage de script léger, orienté objet, principalement connu <br>
+            comme le langage de script des pages web, à objets utilisant le concept de prototype <br>
+            (c’est-à-dire une forme de programmation orientée objet sans classe, fondée sur la notion de prototype.<br>
+            Un prototype est un objet à partir duquel on crée de nouveaux objets.), disposant d'un typage faible et <br>
+            dynamique qui permet de programmer suivant plusieurs paradigmes de programmation : fonctionnelle, <br>
+            impérative et orientée objet. <br>
+          </p>
+      </div>
+
+      <script src="js/main.js" charset="utf-8"></script>
+    </body>
+  </html>

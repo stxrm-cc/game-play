@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+
+<!-- Page that contains the game and interface -->
+
+<html lang="en" dir="ltr">
+<head>
+
+  <!-- References of stylesheets, required js etc. -->
+  <link rel="stylesheet" href="../css/master.css">
+  <link rel="stylesheet" href="../css/settingsWindow.css">
+  <link rel="stylesheet" href="../css/game.css">
+  <meta charset="utf-8">
+  <link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico" />
+  <script type="text/javascript">
+
+  /* script that makes the window's title scroll / aesthetic */
+        msg = " - ";
+        msg = " Chocolate game! " + msg;position = 0;
+        function scrolltitle() {
+            document.title = msg.substring(position, msg.length) + msg.substring(0, position); position++;
+            if (position > msg.length) position = 0
+            window.setTimeout("scrolltitle()", 400);
+        }
+    scrolltitle();
+        </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.9.2/TweenMax.min.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="../js/brython.js"></script>
+  <script type="text/javascript" src="../js/brython_stdlib.js"></script>
+  <script type="text/javascript" src="https://raw.githubusercontent.com/lodash/lodash/4.17.15-npm/lodash.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+</head>
+
+
+
+<body class="disable-select">
+<script type="text/javascript" src="../js/game.js"></script>
+<!-- Fade in transition for page -->
+<div id="preloader">
+  <script type="text/javascript">
+
+/* Transition of the page on load using an overlay (#preloader) */
+  $(document).ready(function () {
+    $('#preloader').fadeOut(2200);
+});
+    </script>
+  </div>
+
+  <!-- canvas where the game is in -->
+  <canvas id="myCanvas" width="1000" height="600">
+  </canvas>
+
+  <!-- Audio player for background (todo: play AFTER page has loaded)-->
+  <div style="display:none">
+    <video id="myAudio" controls="" loop="" autoplay="" name="media">
+      <source src="../sounds/bg.mp3" type="audio/mpeg">
+      </video>
+  </div>
+
+    <!-- game title -->
+    <div class="h2 superShadow2"> Chocolat(e) !
+    </div>
+  <div class="hr">
+    </div>
+  <div class="v1">
+    </div>
+
+    <!-- player list text -->
+<div class="gName superShadow2"> Players: </div>
+
+    <!-- defines icons for players -->
+  <div class="Player">
+    <img id="imgIcon1" src="../img/player.png" alt="Player">
+    <div id="t"> P1 </div>
+    <div id="playingP1" class="">NOW PLAYING</div>
+  </div>
+  <div class="AI">
+    <img class="robotORplayer" id="imgIcon2" src="../img/player.png" alt="Player 2 / AI">
+    <div id="t1" value="P2"> P2 </div>
+    <div id="playingP2_AI" vclass="">NOW PLAYING</div>
+  </div>
+
+  <!-- div for the settings modal -->
+  <div>
+   <a href="#openModal" id="gear2open">
+     <img id="gear" src="../img/gear.png" alt="Settings">
+    </a>
+
+    <div id="openModal" class="modalDialog">
+      <div>
+        <a href="#close" title="Close" class="close">X</a>
+        <p class="settingsH2 superShadow2"> Settings </p>
+        <br><br><br>
+        <p id="activateAI"> Play against AI </p>
+        <p id="activateMusic"> Music </p>
+        <p id="activateError"> Hide error </p>
+        <p id="setDifficulty"> AI level </p>
+        <div class="value">50</div>
+          <input type="range" min="0" max="100" step="1" value="50" id="diff_VALUE" onclick="setDiffValue()">
+        <!-- <p id="debugging"> Debugging (progress %)</p>
+        <p id="debugPercent"></p> -->
+        <br>
+
+
+<!-- Checkbox -->
+<div class="switch_box check1">
+  <input type="checkbox" class="switch_1" id="checkIA">
+</div>
+
+<div class="switch_box check3">
+  <input type="checkbox" class="switch_1" id="checkError">
+</div>
+
+<!-- Class for Music Checkbox -->
+<div class="switch_box check2">
+  <input type="checkbox" class="switch_1" id="checkMusic">
+</div>
+</div>
+</div>
+</div>
+
+<div>
+  <a href="#tutoModal" id="markModal">
+    <img id="mark" src="../img/mark.png" alt="Tutorial">
+  </a>
+
+  <div id="tutoModal" class="modalDialog">
+    <div>
+      <a href="#close" title="Close" class="close">X</a>
+      <p class="settingsH2 superShadow2"> Tutorial </p>
+      <br>
+      <div id="tutoText">
+  <p> -> How to play? </p>
+	<p style="color: #666;"> - The main goal is to NOT take the last chocolate of the grid;
+	when you click on a chocolate you 'eat' it, and you also 'eat' the chocolate down
+on both the horizontal and vertical lines to the right. </p>
+<br>
+<p> -> You can play in 2 modes: </p>
+
+<p style="color: #666;"> - In a duel (1v1), you have to be 2, one starts (picked randomly) and then it is the turn of the other and so on...
+
+<p style="color: #666;"> - Against an AI, of which you can choose the difficulty (0 to 100 with where 0 is the worst and 100 is the best).
+</p>
+<br>
+<p style="line-height: 2.2vh;"><u> /!\</u> <i> The size of the board is limited to 6 by 6 </i></p>
+
+  </div>
+
+  <!-- Script that sets the music button functions etc -->
+  <script type="text/javascript">
+
+  // sets the slider value to set difficulty against the ai
+  var elem = document.querySelector('input[type="range"]');
+
+  var rangeValue = function(){
+    var newValue = elem.value;
+    var target = document.querySelector('.value');
+    target.innerHTML = newValue;
+  }
+
+  elem.addEventListener("input", rangeValue);
+
+// defines when checkbox is checked or not
+  var checkMusic = document.getElementById('checkMusic');
+  checkMusic.checked = true;
+
+// function to stop or start music
+  var video = document.getElementById("myAudio");
+     function stopVideo(){
+          video.pause();
+          video.currentTime = 0;
+     };
+     function startVideo(){
+       video.play();
+       video.currentTime = 0;
+     };
+
+// listens to actions on checkbox with it checkMusic
+document.querySelector('[id=checkMusic]').addEventListener("click", (e) =>{
+
+  // Music checkbox to turn it off or on
+      if(checkMusic.checked == false){
+        stopVideo();
+  } else if (checkMusic.checked == true){
+        startVideo();
+      };
+});
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Div for the grid size change part of the page -->
+  <div>
+
+    <!-- text for grid selector -->
+    <div id="rectangleText" class="visible">
+      Grid settings (max for both is 10 !):
+      </div>
+    <div id="rectangle" class="visible">
+      </div>
+  </div>
+
+  <!-- Form for the input to change grid size to desired size -->
+  <div>
+    <form name='grid' id="grid_etc" class="grid visible">
+  <!-- Form to define the x size and y size of the grid made out of chocolate pieces -->
+      Desired Length: <input type='number' name='length' min=3 max=10 step=1 value=3 id="lengthInput" />
+      &nbsp;
+      Desired Height: <input type='number' name='height' min=3 max=10 step=1 value=3 id="heightInput" />
+      &nbsp;
+      <!-- <input id="buttonChange" type='button' value='Apply' class="superShadow4 button_Change" onclick="" /> -->
+    </form>
+  </div>
+  <div class>
+    <input id="startButton" type='button' value='Start' class="superShadow3 button_Start" onclick="startGame(); setGrid_i()" />
+  </div>
+
+  <div id='choc'></div>
+    <template>
+      <img id="imgPos" src="../img/chocci.png" onclick="doGame(this)" class='visible imgPos doGame'>
+    </template>
+
+  <div type='container' id='endScreen' class="endScreen hidden">
+    <button type="button" class='endScreenButton' onclick="hideEndScreen()">X</button>
+    <div class="endScreenText" id='endScreenText'></div>
+    <div class="endScreenText" id='endScreenText2'></div>
+  </div>
+
+
+    <!-- Script that sets the actual grid -->
+
+    <script type="text/javascript">
+
+    // checks whether checkAi is on or not to optimize grid
+    // function to set the AI checkbox and its actions
+    function do_setAI(){
+      // sets height and length variables
+      globalThis.hValue = parseInt(document.getElementById('heightInput').value);
+      globalThis.lValue = parseInt(document.getElementById('lengthInput').value);
+
+      // Listens for the state the checkbox is in and acts accordingly
+     document.querySelector('[id=checkIA]').addEventListener("click", (e) => {
+
+      // Defines the variables checkAI and checkMusic for their respective checkboxes
+      var checkAI = q("#checkIA");
+
+      // AI checkbox to max out grid and later on to activate the AI vs player mode
+      if (checkAI.checked == true){
+        // replaces Player image with AI image
+        $(document).ready(function() {
+            document.getElementsByClassName("robotORplayer")[0].src = "../img/AI.png";
+            $("div#t1").text("AI");
+            document.getElementById("t1").setAttribute("value", "AI");
+        });
+
+        // Indicates the max for both values (h and l) is 6 in menu
+    $("div#rectangleText").text("Grid settings (max for both is 6 due to the AI limits !):");
+
+    // Caps grid to 6x6 for practical reasons (time for IA to play)
+      $("#heightInput").attr({
+        "max": 6,
+        "min": 3
+      });
+      $("#lengthInput").attr({
+        "max": 6,
+        "min": 3
+      });
+      if (lValue > 6){
+        lValue = 6;
+        document.getElementById("lengthInput").setAttribute("value", "6");
+      };
+      if (hValue > 6){
+        hValue = 6;
+        document.getElementById("heightInput  ").setAttribute("value", "6");
+      };
+
+    // // resets grid
+    // let choc = q("#choc");
+    // choc.innerHTML = "";
+
+    for (y = 0; y < hValue; y++) {
+      $('#imgPos').remove();
+};
+
+// // reconstructs grid to 6x6 max
+//     // assigns chocolate image to length and height
+//     for (var y = 0; y < hValue; y++) {
+//       globalThis.div = d.createElement("div");
+//       choc.appendChild(div);
+
+//       for (var x = 0; x < lValue; x++) {
+//         globalThis.child = q("#imgPos", q("template").content).cloneNode(true);
+//         child.setAttribute("id","imgPos" + (lValue - x) + "_" + (hValue - y));
+//         div.appendChild(child);
+//       }
+//     };
+  } else if (checkAI.checked == false) {
+    // player image
+    $(document).ready(function() {
+        document.getElementsByClassName("robotORplayer")[0].src = "../img/player.png";
+        $("div#t1").text("P2");
+    });
+
+    // Indicates the max for both values (h and l) is 6 in menu
+    $("div#rectangleText").text("Grid settings (max for both is 10 !):");
+
+    // resets both limits to 10
+    $("#heightInput").attr({
+      "max": 10,
+      "min": 3
+    });
+    $("#lengthInput").attr({
+      "max": 10,
+      "min": 3
+    });
+
+    if (lValue > 10){
+      lValue = 10;
+    };
+    if (hValue >10){
+      hValue = 10;
+    };
+  }
+});
+};
+    // Executes the function
+    do_setAI();
+    </script>
+</body>
+</html>

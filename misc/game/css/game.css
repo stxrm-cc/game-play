@@ -1,0 +1,640 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* adapted for all res */
+body, body * {
+  box-sizing:border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* adapted for all res */
+#myCanvas {
+  background-color:#FFE4DE;
+  border: none;
+  position: absolute;
+  width: 67%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 3.5%;
+}
+
+/* adapted for all res */
+.hr {
+  position: absolute;
+  width: 55%;
+  height: 0.45%;
+  top: 23%;
+  left: 28.5%;
+  background-color:#666;
+  border: 0 none;
+}
+
+/* adapted for all res */
+.v1 {
+  position: absolute;
+  width: 0.25%;
+  height: 77.7%;
+  left: 28.5%;
+  top: 11.2%;
+  background-color:#666;
+  border: 0 none;
+}
+
+/* adapted for all res */
+.gName {
+  color: white;
+  font-size: 2.5vh;
+  letter-spacing: -0.3vh;
+  cursor: default;
+  position: absolute;
+  top: 17%;
+  left: 18.2%;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* adapted for all res */
+.h2 {
+  color: white;
+  font-size: 5vh;
+  letter-spacing: -0.3vh;
+  cursor: default;
+  position: absolute;
+  top: 16%;
+  left: 40.5%;
+  /* transform: translate(-50%, -100%); */
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* adapted for all res */
+.settingsH2 {
+  position: relative;
+  color: white;
+  font-size: 3.2vh;
+  letter-spacing: -0.3vh;
+  cursor: default;
+  margin-left: 26%;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* adapted */
+#heightInput, #lengthInput{
+  position: relative;
+  top: 20%;
+  font-size: 2vh;
+  width: 5vh;
+}
+
+/* adapted for all res */
+.superShadow2 {
+  text-shadow:     0 0.10964912280701754vh 0 hsl(11,0%,0%),
+	                 0 0.21929824561403508vh 0 hsl(11,0%,0%),
+	                 0 0.32894736842105265vh 0 hsl(11,0%,0%),
+	                 0 0.43859649122807015vh 0 hsl(11,0%,0%),
+	                 0 0.5482456140350878vh 0 hsl(11,0%,0%),
+	                 0 0.6578947368421053vh 0 hsl(11,0%,0%),
+	                 0 0.7675438596491229vh 0 hsl(11,0%,0%),
+	                 0 0.8771929824561403vh 0 hsl(11,0%,0%),
+
+	                 0 0 5px rgba(0,0,0,.05),
+	                0 1px 3px rgba(0,0,0,.2),
+	                0 3px 5px rgba(0,0,0,.2),
+	               0 5px 10px rgba(0,0,0,.2),
+	              0 10px 10px rgba(0,0,0,.2),
+	              0 20px 20px rgba(0,0,0,.3);
+}
+
+/* adapted for all res */
+.grid {
+  opacity: 1;
+  top: 31%;
+  left: 31%;
+  position: absolute;
+  cursor: auto;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5vh;
+}
+
+.grid:not(.visible){
+  opacity: 0;
+}
+
+/* adapted for all res */
+#rectangleText{
+  opacity: 1;
+  top: 28.2%;
+  left: 30.5%;
+  position: absolute;
+  cursor: auto;
+  color: #666;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2vh;
+}
+
+#rectangleText:not(.visible){
+  opacity: 0;
+}
+
+/* adapted for all res */
+#rectangle {
+  width: 33.5%;
+  height: 4.5%;
+  border: 0.4vh solid #666;
+  top: 30.28%;
+  left: 30.3%;
+  position: absolute;
+}
+#rectangle:not(.visible){
+  opacity: 0;
+}
+
+
+/* start of button change - adapted for all res */
+.button_Change{
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  background-color: #997B75; /* Green */
+  border: none;
+  color: white;
+  padding: 0.8vh 1.2vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.4vh;
+  cursor: pointer;
+  position: absolute;
+  margin-top: 0%;
+  margin-left: 2.5%;
+  border-radius: 0.7vh;
+  text-align: 50px;
+}
+.button_Change:hover{
+  box-shadow:  4px 4px 6px 0 rgba(153, 123, 117,.5),
+            -4px -4px 6px 0 rgba(153, 123, 117, .2),
+  inset -4px -4px 6px 0 rgba(153, 123, 117,.5),
+  inset 4px 4px 6px 0 rgba(153, 123, 117, .3);
+}
+.superShadow4 {
+  text-shadow:     0 0.10964912280701754vh 0 hsl(11,0%,0%),
+                   0 0.21929824561403508vh 0 hsl(11,0%,0%),
+
+	                 0 0 5px rgba(0,0,0,.05),
+	                0 1px 3px rgba(0,0,0,.2),
+	                0 3px 5px rgba(0,0,0,.2),
+	               0 5px 10px rgba(0,0,0,.2),
+	              0 10px 10px rgba(0,0,0,.2),
+	              0 20px 20px rgba(0,0,0,.3);
+}
+/* end of button change */
+
+/* start of button "start" - adapted for all res */
+.button_Start{
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  background-color: #997B75;
+  border: none;
+  color: white;
+  padding: 1vh 0.8vh;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 3vh;
+  cursor: pointer;
+  position: absolute;
+  top: 80.9%;
+  left: 76.4%;
+  border-radius: 1vh;
+  transform: translateX(-50%);
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges; /* Firefox */
+  image-rendering: -o-crisp-edges; /* Opera */
+  image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+}
+.button_Start:hover{
+  box-shadow:  4px 4px 6px 0 rgba(153, 123, 117,.5),
+            -4px -4px 6px 0 rgba(153, 123, 117, .2),
+  inset -4px -4px 6px 0 rgba(153, 123, 117,.5),
+  inset 4px 4px 6px 0 rgba(153, 123, 117, .3);
+}
+.superShadow3 {
+  text-shadow:      0 0.10964912280701754vh 0 hsl(11,0%,0%),
+  0 0.21929824561403508vh 0 hsl(11,0%,0%),
+  0 0.32894736842105265vh 0 hsl(11,0%,0%),
+  0 0.43859649122807015vh 0 hsl(11,0%,0%),
+
+	                 0 0 5px rgba(0,0,0,.05),
+	                0 1px 3px rgba(0,0,0,.2),
+	                0 3px 5px rgba(0,0,0,.2),
+	               0 5px 10px rgba(0,0,0,.2),
+	              0 10px 10px rgba(0,0,0,.2),
+	              0 20px 20px rgba(0,0,0,.3);
+}
+/* end of "start" button */
+
+/* adapted for all res */
+#imgIcon1 {
+  width : 7vh;
+  height: auto;
+  cursor: default;
+  position: absolute;
+  top: 29.4%;
+  left: 18%;
+}
+
+/* adapted for all res */
+#imgIcon2 {
+  width : 7vh;
+  height: auto;
+  cursor: default;
+  position: absolute;
+  top: 38.4%;
+  left: 18%;
+}
+
+/* t and t1 are the text that is assigned to the player icons - adapted for all res */
+#t {
+  color: #666;
+  font-size: 1.2vh;
+  letter-spacing: -0.3vh;
+  cursor: pointer;
+  position: absolute;
+  top: 32.5%;
+  left: 22.5%;
+  font-family: 'Press Start 2P', cursive;
+}
+#t1 {
+  color: #666;
+  font-size: 1.2vh;
+  letter-spacing: -0.3vh;
+  cursor: pointer;
+  position: absolute;
+  top: 41.5%;
+  left: 22.5%;
+  font-family: 'Press Start 2P', cursive;
+}
+
+/* "now playing" display text */
+#playingP1{
+  position: absolute;
+  font-family: 'Press Start 2P', cursive;
+  color: #6ede6a;
+  top: 34.5%;
+  left: 22.5%;
+  font-size: 1vh;
+}
+#playingP1:not(.visible) {
+  opacity: 0;
+}
+
+#playingP2_AI{
+  position: absolute;
+  font-family: 'Press Start 2P', cursive;
+  color: #6ede6a;
+  top: 43.5%;
+  left: 22.5%;
+  font-size: 1vh;
+}
+#playingP2_AI:not(.visible) {
+  opacity: 0;
+}
+
+/* section has been adapted to all res */
+.imgPos {
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
+#choc {
+  display: grid;
+  margin-left: auto;
+  margin-right: auto;
+  top: 38%;
+  left: 31%;
+  position: absolute;
+}
+#choc > div > .imgPos{
+  float: left;
+  float: right;
+  clear:none;
+  height: auto;
+  width:6.5vh;
+}
+#choc > div > .imgPos:not(.visible) {
+	opacity: 0;
+  cursor: default;
+}
+
+/* gear icon - adapted for all res */
+#gear{
+  cursor: pointer;
+  position: absolute;
+  top: 83.8%;
+  left: 17.65%;
+  width: 3vh;
+  height: auto;
+}
+
+/* tutorial question mark - adapted */
+#mark {
+  cursor: pointer;
+  position: absolute;
+  top: 83.8%;
+  left: 19.8%;
+  width: 1.8vh;
+  height: auto;
+  display: block;
+}
+
+#tutoText{
+  font-size: 1.5vh;
+}
+
+/*-------- Popup settings window ----------*/
+.modalDialog {
+    position: absolute;
+    font-family: 'Press Start 2P', cursive;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    width: 60vh;
+    height: 58.7vh;
+    position: relative;
+    margin: 10% auto;
+    padding: 0.5vh 2vh 1.3vh 2vh;
+    border-radius: 1vh;
+    background: #FFE4DE;
+}
+
+.close {
+    font-size: 1.5vh;
+    background: #997B75;
+    line-height: 3.5vh;
+    position: absolute;
+    right: -1.2vh;
+    text-align: center;
+    top: -1vh;
+    width: 4vh;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 1.2vh;
+    -moz-border-radius: 1.2vh;
+    border-radius: 40px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover {
+    background: #d1a15a;
+}
+
+/*------------ Checkbox style ------------*/
+.wrapper{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	width: 40vh;
+	margin: 50vh auto 0;
+	-ms-flex-wrap: wrap;
+	    flex-wrap: wrap;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+
+.switch_box{
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+
+	height: 1;
+	-webkit-box-pack: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+}
+
+/* Switch 1 Specific Styles Start */
+
+input[type="checkbox"].switch_1{
+	font-size: 3vh;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+	width: 5vh;
+	height: 2.25vh;
+  background: #ddF;
+	border-radius: 9vh;
+	position: absolute;
+	cursor: pointer;
+	outline: none;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+
+  input[type="checkbox"].switch_1:checked{
+	background: #997B75;
+  }
+
+  input[type="checkbox"].switch_1:after{
+	position: absolute;
+	content: "";
+	width: 2.25vh;
+	height: 2.25vh;
+	border-radius: 50%;
+	background: #fff;
+	-webkit-box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	        box-shadow: 0 0 .25em rgba(0,0,0,.3);
+	-webkit-transform: scale(.7);
+	        transform: scale(.7);
+	left: 0;
+	-webkit-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+  }
+
+  input[type="checkbox"].switch_1:checked:after{
+	left: calc(100% - 2.25vh);
+  }
+
+/* Checkbox positions */
+.check1{
+  position: absolute;
+  margin-left: 50%;
+  margin-top: -52%;
+}
+
+.check2{
+  position: absolute;
+  margin-left: 50%;
+  margin-top: -38%;
+}
+
+.check3{
+  position: absolute;
+  margin-left: 50%;
+  margin-top: -23.75%;
+}
+/* Setting box text */
+
+/* adapted */
+#activateAI{
+  position: relative;
+  padding: 1rem;
+  left: 1rem;
+  color: #000;
+  font-size: 1.5vh;
+  letter-spacing: -0.3vh;
+  cursor: default;
+}
+
+
+/* adapted */
+#activateMusic{
+  position: relative;
+  left: 27%;
+  padding: 1rem;
+  color: #000;
+  font-size: 1.5vh;
+  letter-spacing: -0.3vh;
+  cursor: default;
+}
+
+/* adapted */
+#activateError{
+  position: relative;
+  left: 18%;
+  padding: 1rem;
+  color: #000;
+  font-size: 1.5vh;
+  letter-spacing: -0.3vh;
+  cursor: default;
+}
+
+/* adapted */
+#setDifficulty{
+  position: relative;
+  font-size: 1.5vh;
+  letter-spacing: -0.3vh;
+  margin-top: 5%;
+  cursor: default;
+}
+
+/* adapted */
+#debugging{
+  position: relative;
+  font-size: 1.5vh;
+  letter-spacing: -0.3vh;
+  margin-top: 10%;
+  cursor: default;
+}
+
+/* adapted */
+.value{
+  position: absolute;
+  font-size: 1.5vh;
+  letter-spacing: -0.1vh;
+  margin-left: 55%;
+  margin-top: 1.5%;
+  cursor: default;
+  color: #666;
+}
+
+/* partie slider pour mettre la difficulte */
+input[type="range"] {
+  display: block;
+  -webkit-appearance: none;
+  background-color: #666;
+  width: 30vh;
+  height: 0.6vh;
+  border-radius: 0.7vh;
+  outline: 0;
+  margin-top: 5%;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background-color: #997B75;
+  width: 2vh;
+  height: 2vh;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: .3s ease-in-out;
+}
+​input[type="range"]::-webkit-slider-thumb:hover {
+  background-color: white;
+}
+/* end */
+
+/* changes the input for the grid size so it fits in the settings box */
+input[type=number] {
+  width: 50vh;
+  padding: 0vh 0px;
+  margin: 0.3vh 0;
+  box-sizing: border-box;
+  margin-bottom: 2vh;
+}
+
+/* endscreen part */
+.endScreen {
+  opacity: 1;
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  width: 30%;
+  height: 25%;
+  padding: 1rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0 , 0.2);
+  border-radius: 5px;
+  background: #ffffff;
+  font-family: 'Press Start 2P', cursive;
+  transform: translate(-50%, -50%);
+}
+
+
+.endScreenButton {
+  position: relative;
+  top: -2.0vh;
+  left: -2vh;
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  font-weight: bold;
+  font-size: 0.5rem;
+  color: #ffffff;
+  border: none;
+  border-radius: 1.4vh;
+  outline: none;
+  cursor: pointer;
+  background: #63411c;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.endScreenButton:hover{
+  background: #d1a15a;
+}
+
+.endScreenText {
+  color: #000000;
+  padding-top: 1.5rem;
+  position: relative;
+  font-size: 1.5vh;
+}
+
+.hidden{
+  opacity: 0;
+  top: 200%;
+}
