@@ -85,4 +85,9 @@ def Fibonacci(depth):
 
 def fibo_n(n):
     return Fibonacci(n)[n-1]
-
+====================================================
+import math 
+def archi_pi(sides):
+    angle = math.radians(360/sides)
+    return math.sin(angle)*sides / 2
+====================================================
