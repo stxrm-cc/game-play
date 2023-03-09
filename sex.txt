@@ -91,3 +91,12 @@ def archi_pi(sides):
     angle = math.radians(360/sides)
     return math.sin(angle)*sides / 2
 ====================================================
+def wallis(depth):
+    p_2 = 1
+    num = 2
+    for i in range(depth):
+        left = num/(num-1)
+        right = num/(num+1)
+        p_2 *= left*right
+        num += 2
+    return p_2 * 2
