@@ -71,4 +71,18 @@ if __name__ == "__main__":
     print(f"Approximation of PI using {num} points: {drawMC(300, num)}")
     # t.mainloop() pour l'executer hors interpreteur python
     
-    
+================= FIBONACCI ======================
+def Fibonacci(depth):
+    one = 1; two = 1
+    nums = [one, two]
+    result = 0
+    for i in range(depth):
+        result = one + two
+        one = two
+        two = result
+        nums.append(result)
+    return nums
+
+def fibo_n(n):
+    return Fibonacci(n)[n-1]
+
