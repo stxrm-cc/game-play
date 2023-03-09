@@ -1,0 +1,74 @@
+import turtle as t, random as r, math as m
+
+t.tracer(0, 0)
+
+## Helper functions
+def top(x: int) -> None:
+    t.setheading(0)
+    t.setheading(90)
+    t.forward(x)
+    t.setheading(0)
+
+def bot(x: int) -> None:
+    t.setheading(0)
+    t.setheading(-90)
+    t.forward(x)
+    t.setheading(0)
+
+def point(x: int, y: int, diam = None, color: str = "black") -> None:
+    t.penup()
+    t.goto(x,y)
+    t.dot(diam, color)
+
+def reset() -> None:
+    t.goto(0,0)
+
+def drawAxes(cot: int) -> None:
+    ## init
+    x, y = cot, cot
+    t.forward(cot); reset(); top(cot);
+
+def axesCircle(cot:int) -> None:
+    t.pencolor("red")
+    ## init
+    t.penup()
+    t.goto(cot/2, 0)
+    t.pendown()
+    t.circle(cot/2)
+
+
+## Monte Carlo
+def monteCarlo(totIn: int, totOut: int) -> float:
+    return (totIn/totOut) * 4
+
+
+def isInQCircle(cot: int, p: list) -> bool:
+    if p[0]**2 + p[1]**2 <= cot**2:
+        return True
+    return False;
+    
+def drawMC(cot: int, n: int) -> float:
+    ## init
+    drawAxes(cot)
+    pointsXY = []
+    pointsIn4 = []
+    
+    for i in range(n):
+        rx, ry = r.randint(0, cot), r.randint(0, cot)
+        pointsXY.append([rx,ry])
+        if isInQCircle(cot, [rx,ry]):
+            point(rx,ry, None, "red")
+            pointsIn4.append(pointsXY[i])
+        else:
+            point(rx,ry, None, "blue")
+                  
+    #print(f"Total: {pointsXY}\n\nPoints in circle: {pointsIn4}\n\nNumber of points inside: {len(pointsIn4)}\nNumber of points outside: {len(pointsXY)}")
+    return monteCarlo(len(pointsIn4), len(pointsXY));
+
+## init function start
+if __name__ == "__main__":
+    num = int(input("Nb of points to be generated:\n-> "))
+    print(f"Approximation of PI using {num} points: {drawMC(300, num)}")
+    # t.mainloop() pour l'executer hors interpreteur python
+    
+    
