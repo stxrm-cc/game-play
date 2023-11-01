@@ -1,22 +1,22 @@
 {
    "users":[
       {
-         "user_id": 1,
+         "user_id":1,
          "username":"romain",
          "password":"romain123",
          "subscription_end_date":"2023-12-31"
       },
       {
-         "user_id": 2,
+         "user_id":2,
          "username":"sauce",
          "password":"testabc123",
          "subscription_end_date":"2030-01-01"
       },
       {
-         "user_id": 3,
+         "user_id":3,
          "username":"zephyr",
          "password":"zephyr123abc",
          "subscription_end_date":"2023-11-08"
-      },
+      }
    ]
 }
